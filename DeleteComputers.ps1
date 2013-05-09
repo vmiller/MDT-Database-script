@@ -1,5 +1,5 @@
 # Script to import computer information from a .csv file and
-# load the info into the MDT database
+# delete the info in the MDT database
 #
 # Script requires the MDTDB.psm1 writen by Michael Niehaus and assumes
 # that it is located in the same directory.

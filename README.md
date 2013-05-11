@@ -4,4 +4,6 @@ This is an example of a Powershell script that builds on the MDT Powershell modu
 
 This example loads Mac address, Computer name, Admin Password, and Role. It could easily be adjusted for any set of fields.  
 
-Obviously the line of code that sets up the connection to the database will need to be modified to match the environment being used.
+Obviously the line of code that sets up the connection to the database will need to be modified to match the environment being used.   
+
+The DeleteComputers.ps1 script needs some clean up as it was created by simply deleting some parts out of the original LoadComputers.ps1 script.

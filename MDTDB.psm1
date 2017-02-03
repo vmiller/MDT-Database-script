@@ -49,7 +49,7 @@ function Clear-MDTArray {
     $cmd = New-Object System.Data.SqlClient.SqlCommand($delCommand, $mdtSQLConnection)
     $null = $cmd.ExecuteScalar()
 
-    Write-Host "Removed all records from $table for Type = $type and ID = $id."
+    Write-Verbose "Removed all records from $table for Type = $type and ID = $id."
 }
 
 function Get-MDTArray {
@@ -101,7 +101,7 @@ function Set-MDTArray {
         $seq = $seq + 1
     }
         
-    Write-Host "Added records to $table for Type = $type and ID = $id."
+    Write-Verbose "Added records to $table for Type = $type and ID = $id."
 }
 
 # ---------------------------------------------------------------------
@@ -147,7 +147,7 @@ function Connect-MDTDatabase {
     }
     
     # Make the connection and save it in a global variable
-    Write-Host "Connecting to: $mdtSQLConnectString"
+    Write-Verbose "Connecting to: $mdtSQLConnectString"
     $global:mdtSQLConnection = new-object System.Data.SqlClient.SqlConnection
     $global:mdtSQLConnection.ConnectionString = $mdtSQLConnectString
     $global:mdtSQLConnection.Open()
@@ -187,7 +187,7 @@ function New-MDTComputer {
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
             
-        Write-Host "Added settings for the specified computer"
+        Write-Verbose "Added settings for the specified computer"
         
         # Write the new record back to the pipeline
         Get-MDTComputer -ID $identity
@@ -289,7 +289,7 @@ function Set-MDTComputer {
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
             
-        Write-Host "Added settings for the specified computer"
+        Write-Verbose "Added settings for the specified computer"
         
         # Write the updated record back to the pipeline
         Get-MDTComputer -ID $id
@@ -350,7 +350,7 @@ function Remove-MDTComputer {
         $cmd = New-Object System.Data.SqlClient.SqlCommand($delCommand, $mdtSQLConnection)
         $null = $cmd.ExecuteScalar()
 
-        Write-Host "Removed the computer with ID = $id."
+        Write-Verbose "Removed the computer with ID = $id."
     }
 }
 
@@ -556,7 +556,7 @@ function New-MDTRole {
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
             
-        Write-Host "Added settings for the specified role"
+        Write-Verbose "Added settings for the specified role"
         
         # Write the new record back to the pipeline
         Get-MDTRole -ID $identity
@@ -625,7 +625,7 @@ function Set-MDTRole {
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
             
-        Write-Host "Added settings for the specified role"
+        Write-Verbose "Added settings for the specified role"
         
         # Write the updated record back to the pipeline
         Get-MDTRole -ID $id
@@ -860,7 +860,7 @@ function New-MDTLocation {
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
             
-        Write-Host "Added settings for the specified location"
+        Write-Verbose "Added settings for the specified location"
         
         # Write the new record back to the pipeline
         Get-MDTLocation -ID $identity
@@ -955,7 +955,7 @@ function Set-MDTLocation {
             $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
             $null = $settingsCmd.ExecuteScalar()
             
-            Write-Host "Added settings for the specified location"
+            Write-Verbose "Added settings for the specified location"
         }
         
         # If there are some gateways save them
@@ -979,7 +979,7 @@ function Set-MDTLocation {
                 $null = $settingsCmd.ExecuteScalar()
 
             }
-            Write-Host "Set the default gateways for the location with ID = $id."    
+            Write-Verbose "Set the default gateways for the location with ID = $id."    
         }
         
         # Write the updated record back to the pipeline
@@ -1005,7 +1005,7 @@ function Remove-MDTLocation {
         $cmd = New-Object System.Data.SqlClient.SqlCommand($delCommand, $mdtSQLConnection)
         $null = $cmd.ExecuteScalar()
 
-        Write-Host "Removed the location with ID = $id."
+        Write-Verbose "Removed the location with ID = $id."
     }
 }
 
@@ -1212,7 +1212,7 @@ function New-MDTMakeModel {
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
             
-        Write-Host "Added settings for the specified make model"
+        Write-Verbose "Added settings for the specified make model"
         
         # Write the new record back to the pipeline
         Get-MDTMakeModel -ID $identity
@@ -1290,7 +1290,7 @@ function Set-MDTMakeModel {
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
             
-        Write-Host "Added settings for the specified make model"
+        Write-Verbose "Added settings for the specified make model"
         
         # Write the updated record back to the pipeline
         Get-MDTMakeModel -ID $id
@@ -1315,7 +1315,7 @@ function Remove-MDTMakeModel {
         $cmd = New-Object System.Data.SqlClient.SqlCommand($delCommand, $mdtSQLConnection)
         $null = $cmd.ExecuteScalar()
 
-        Write-Host "Removed the make model with ID = $id."
+        Write-Verbose "Removed the make model with ID = $id."
     }
 }
 
@@ -1572,7 +1572,7 @@ function Set-MDTPackageMapping {
         Write-Verbose "About to execute command: $sql"
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
-        Write-Host "Updated the package mapping record for $ARPName to install package $package."    
+        Write-Verbose "Updated the package mapping record for $ARPName to install package $package."    
         
         # Write the updated record back to the pipeline
         Get-MDTPackageMapping -ARPName $ARPName
@@ -1613,6 +1613,6 @@ function Remove-MDTPackageMapping {
         Write-Verbose "About to execute command: $sql"
         $settingsCmd = New-Object System.Data.SqlClient.SqlCommand($sql, $mdtSQLConnection)
         $null = $settingsCmd.ExecuteScalar()
-        Write-Host "Removed package mapping records matching the specified parameters."    
+        Write-Verbose "Removed package mapping records matching the specified parameters."    
     }
 }

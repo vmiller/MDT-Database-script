@@ -1,4 +1,9 @@
 # ***************************************************************************
+#
+# This version was forked from Michael Niehaus's original by Vaughn Miller. 
+# Same disclaimer applies, it is provided as is with no waranty
+#
+# ***************************************************************************
 # 
 # File:      MDTDB.psm1
 # 
@@ -31,9 +36,6 @@
 # ---------------------------------------------------------------------
 # Helper functions (not intended to be called directly)
 # ---------------------------------------------------------------------
-#
-# ==== February 2017 ====
-# Set-MDTComputerIdentity function provided by https://github.com/genohunter
 #
 
 function Clear-MDTArray {

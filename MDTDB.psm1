@@ -123,8 +123,11 @@ function Connect-MDTDatabase {
         [Parameter()] $database
     )
 
-    # Clear the results from any previous execution
-    Clear-Variable -name mdtDatabase -errorAction SilentlyContinue
+    # If $mdtDatabase exists from a previous execution, clear it
+    if ($mdtDatabase)
+    {
+        Clear-Variable -name mdtDatabase
+    }
 
     # If a drive path is specified, use PowerShell to build the connection string.
     # Otherwise, build it from the other parameters

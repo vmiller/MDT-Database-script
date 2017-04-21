@@ -1,4 +1,9 @@
 # ***************************************************************************
+#
+# This version was forked from Michael Niehaus's original by Vaughn Miller. 
+# Same disclaimer applies, it is provided as is with no waranty
+#
+# ***************************************************************************
 # 
 # File:      MDTDB.psm1
 # 
@@ -31,9 +36,6 @@
 # ---------------------------------------------------------------------
 # Helper functions (not intended to be called directly)
 # ---------------------------------------------------------------------
-#
-# ==== February 2017 ====
-# Set-MDTComputerIdentity function provided by https://github.com/genohunter
 #
 
 function Clear-MDTArray {
@@ -123,8 +125,11 @@ function Connect-MDTDatabase {
         [Parameter()] $database
     )
 
-    # Clear the results from any previous execution
-    Clear-Variable -name mdtDatabase -errorAction SilentlyContinue
+    # If $mdtDatabase exists from a previous execution, clear it
+    if ($mdtDatabase)
+    {
+        Clear-Variable -name mdtDatabase
+    }
 
     # If a drive path is specified, use PowerShell to build the connection string.
     # Otherwise, build it from the other parameters
